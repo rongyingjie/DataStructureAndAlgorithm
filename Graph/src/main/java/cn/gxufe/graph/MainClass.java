@@ -47,5 +47,12 @@ public class MainClass {
         System.out.println(floyd);
     }
 
+    @Test
+    public void testTopSort(){
+        DiGraph diGraph = new DiGraph("topsort_digraph.txt");
+        List<Vertex> vertices = diGraph.topSort();
+        System.out.println(vertices);
+
+    }
 
 }

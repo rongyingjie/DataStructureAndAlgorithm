@@ -5,7 +5,7 @@ import java.util.*;
 
 public abstract class Graph  {
 
-    protected int vertexs; // 定点数量
+    protected int vertexs; // 顶点数量
     protected int edges; // 边数量
     protected Vertex[] vertexList;
 
