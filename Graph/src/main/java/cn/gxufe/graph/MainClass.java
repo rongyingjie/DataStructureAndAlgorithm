@@ -52,7 +52,18 @@ public class MainClass {
         DiGraph diGraph = new DiGraph("topsort_digraph.txt");
         List<Vertex> vertices = diGraph.topSort();
         System.out.println(vertices);
-
     }
+
+    @Test
+    /**
+     * 关键路径
+     * 得到所有关键事件和关键活动
+     */
+    public void testCriticalPath() {
+        WeightDiGraph weightDiGraph = new WeightDiGraph("critical_path.txt");
+        Object[] objects = weightDiGraph.criticalPath();
+        System.out.println(weightDiGraph);
+    }
+
 
 }

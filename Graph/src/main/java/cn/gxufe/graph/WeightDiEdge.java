@@ -31,4 +31,9 @@ public class WeightDiEdge extends UndirectedEdge{
     public void setBefore(WeightDiEdge before) {
         this.before = before;
     }
+
+    @Override
+    public String toString() {
+        return this.from + "," + this.to + ","+ this.weight;
+    }
 }
