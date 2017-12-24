@@ -9,6 +9,20 @@ public class MainClass {
 
 
     @Test
+    public void testQuickSort(){
+        Integer[] comparables = new Integer[100];
+        Random random = new Random();
+        for (int i=0;i<comparables.length;i++){
+            comparables[i] = Math.abs(random.nextInt(500));
+        }
+        QuickSort.sort(comparables);
+        for (Comparable c : comparables  ) {
+            System.out.println(c);
+        }
+    }
+
+
+    @Test
     public void testHeapSort(){
         HeapSort heapSort = new HeapSort(1000);
         Random random = new Random();
