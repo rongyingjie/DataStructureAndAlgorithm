@@ -34,9 +34,16 @@ public class MainClass {
     @Test // 单源最短路径
     public void testDijkstra(){
         WeightDiGraph weightDiGraph = new WeightDiGraph("simple_weightedDigraph.txt");
-        WeightDiGraph.Result dijkstra = weightDiGraph.Dijkstra(0, 6);
+        WeightDiGraph.Result dijkstra = weightDiGraph.Dijkstra(0, 3);
         System.out.println(dijkstra.points); // 经过的节点
         System.out.println(dijkstra.weight); // 总的权重值
+    }
+
+    @Test
+    public void testBellmanFord(){
+        WeightDiGraph weightDiGraph = new WeightDiGraph("simple_weightedDigraph.txt");
+        Object object = weightDiGraph.bellmanFord(0);
+        System.out.println(object);
     }
 
     @Test // 多源最短路径

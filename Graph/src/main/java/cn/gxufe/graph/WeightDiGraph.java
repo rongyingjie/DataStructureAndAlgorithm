@@ -115,6 +115,50 @@ public class WeightDiGraph {
         }
     }
 
+    public Object bellmanFord(int point) {
+
+        Double[][] result = new Double[vertexs][vertexs];
+        for(int i=0;i < vertexs;i++){
+            result[point][i] = 0.0;
+        }
+        LinkedList<WeightDiEdge> stack = new LinkedList<>();
+        for (UndirectedEdge undirectedEdge : this.vertices[point].edges){
+            stack.add(  (WeightDiEdge) undirectedEdge );
+        }
+        int i = 1;
+        int size =  stack.size();
+        while ( ! stack.isEmpty() && i < vertexs){
+            WeightDiEdge weightDiEdge = stack.pop();
+            if ( result[i][weightDiEdge.getTo()] == null ) {
+                result[i][weightDiEdge.getTo()] = weightDiEdge.weight  + result[i-1][weightDiEdge.getFrom()];
+            }else {
+                if( result[i][weightDiEdge.getFrom()] + weightDiEdge.weight < result[i][weightDiEdge.getTo()] ){
+                    result[i][weightDiEdge.getTo()] =  result[i][weightDiEdge.getFrom()] + weightDiEdge.weight;
+                }
+            }
+            for (UndirectedEdge undirectedEdge : this.vertices[weightDiEdge.to].edges ){
+                if( result[i][undirectedEdge.getTo()] == null ){
+                    stack.add(  (WeightDiEdge) undirectedEdge );
+                }else{
+                    if( result[i][undirectedEdge.getTo()] <  result[i][weightDiEdge.getTo()] + weightDiEdge.weight){
+                        stack.add(  (WeightDiEdge) undirectedEdge );
+                    }
+                }
+            }
+            size --;
+            if( size == 0 ){
+                i ++ ;
+                size =  stack.size();
+                for(int j = 0; j  < vertexs && i < vertexs; j++ ){
+                    if( result[i - 1][j] != null ){
+                        result[i][j] = result[i - 1][j];
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
     public static class Result {
         public double weight = -1;
         public LinkedList<Integer> points  = new LinkedList<>();
